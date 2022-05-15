@@ -13,3 +13,14 @@ login is verified against a ldap server
 - logout
 - healthcheck
 - gettask
+
+
+
+# All steps
+- after we created the main folder we have to initialize the new module assigning it a nam:
+    go mod init github.com/a11dev/go-gen-backend
+- I have chosen a project structure pointing to the modularization, we are going to create:
+  - user : it contains user actions like login
+  - task : it contains task actions
+  - utilities : common functions
+  - interfaces : backend to southbound system interface
