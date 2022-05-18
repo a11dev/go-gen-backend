@@ -24,3 +24,8 @@ login is verified against a ldap server
   - task : it contains task actions
   - utilities : common functions
   - interfaces : backend to southbound system interface
+  - middleware : contains gin middleware
+- add gin to our module: go get github.com/gin-gonic/gin
+- Into the root create main.go
+- 
+- create authentication 
