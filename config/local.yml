@@ -1,0 +1,12 @@
+server_port: "8083"
+ldap_config:
+  ldap_enabled: false
+  ldap_server: "<ldap server url>"
+  ldap_domain: "<ldap domain>"
+  ldap_base: "<ldap base i.e.: OU=your OU,O=your O"
+jwt_info:
+  jwt_signing_key: "your generic jwt signing key"
+  jwt_expire_time_sec: '10m'
+  jwt_issuer: "your issuer"
+  jwt_realm: "your realm"
+  jwt_id: "id"
