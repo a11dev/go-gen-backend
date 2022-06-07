@@ -14,3 +14,6 @@
 # Dependency directories (remove the comment below to include it)
 # vendor/
 config/dev.yml
+config/test.yml
+keys/server-cert.pem
+keys/server-key.pem

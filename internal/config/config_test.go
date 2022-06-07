@@ -1,20 +1,17 @@
 package config
 
 import (
-	"flag"
+	"os"
 	"testing"
 )
 
 // TestHelloName calls greetings.Hello with a name, checking
 // for a valid return value.
 func TestConfigLoading(t *testing.T) {
-	confFileName := "../../config/local.yml"
+	os.Setenv("ENVIRONMENT_TYPE", "AUTOTEST")
 
-	var flagConfig = flag.String("config", confFileName, "path to the config file")
-
-	flag.Parse()
 	want := ""
-	cfg, err := Load(*flagConfig)
+	cfg, err := Load()
 
 	if cfg.LdapConfig.LdapServer == "" || err != nil {
 		t.Fatalf(`TestConfigLoading("LdapServer") = %q, %v, want match for %#q, nil`, cfg.LdapConfig.LdapServer, err, want)

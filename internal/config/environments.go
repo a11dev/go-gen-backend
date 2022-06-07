@@ -28,7 +28,7 @@ func GetEnvType() (string, error) {
 	}
 
 	if _, err := os.Stat(confFile); errors.Is(err, os.ErrNotExist) {
-		return "", errors.New(fmt.Sprintf("%s does not exist", confFile))
+		return "", errors.New(fmt.Sprintf("%s does not exist ; env type: %s", confFile, variable))
 	}
 
 	return confFile, nil
