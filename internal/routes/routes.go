@@ -8,13 +8,14 @@ import (
 	"github.com/a11dev/go-gen-backend/internal/config"
 	"github.com/a11dev/go-gen-backend/internal/handlers"
 	"github.com/a11dev/go-gen-backend/internal/middleware"
+	"github.com/a11dev/go-gen-backend/internal/runtimes"
 	jwt "github.com/appleboy/gin-jwt/v2"
 	"github.com/gin-gonic/gin"
 	"github.com/shaj13/go-guardian/auth"
 	"github.com/shaj13/go-guardian/store"
 )
 
-func InitializeRoutes(router *gin.Engine, cfg *config.Config, authenticator auth.Authenticator, store store.Cache) {
+func InitializeRoutes(router *gin.Engine, cfg *config.Config, authenticator auth.Authenticator, store store.Cache, inc chan runtimes.BackendMsg) {
 	// the jwt middleware
 	authMiddleware, err := middleware.JwtAuth(authenticator, cfg)
 	if err != nil {
@@ -32,6 +33,12 @@ func InitializeRoutes(router *gin.Engine, cfg *config.Config, authenticator auth
 		log.Printf("NoRoute claims: %#v\n", claims)
 		c.JSON(404, gin.H{"code": "PAGE_NOT_FOUND", "message": "Page not found"})
 	})
+
+	chans := router.Group("/chans")
+	chans.Use(middleware.Backend1ChannelsMiddleware(inc))
+	{
+		chans.GET("/routine/:id", handlers.InvokeBackend)
+	}
 
 	auth := router.Group("/auth")
 	// Refresh time can be longer than token timeout

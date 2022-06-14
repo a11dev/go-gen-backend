@@ -21,6 +21,7 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/segmentio/ksuid v1.0.4 // indirect
 	github.com/shaj13/go-guardian v1.5.11 // indirect
 	github.com/shaj13/go-guardian/v2 v2.11.5 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect

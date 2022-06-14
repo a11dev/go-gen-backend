@@ -27,7 +27,23 @@ login is verified against an ldap server
   - TEST      test env values
   - AUTOTEST  automatic test env values
 
-# All steps
+# Commands
+
+- build:     go build 
+- run:       go run main.go
+- unit test: go test ./...
+
+# Contents
+- internal
+  - config: configuration loading
+  - handlers: exposed functions handlers
+    - get.task: based on the received id return all task data ( tbd: if a body is present it must be validated and should contains requested properties )
+    - healthcheck: healtcheck service
+  - middleware
+    - middleware.auth: receive the
+  - runtimes: 
+    - runtime.backend1.client: this comes from a requirement I struggle with some time ago. I should invoke a backend web service accessible using a basic authentication ( user/password ). To make it a little more performant I intend to use a persistent http but I'm not able to maintain it accross many routins ( automatically instantiated by gin ). The idea here is instantiate a number of this runtime setting up a connection to the backend , an incoming channel will receive new requests must be forwarded to the backend, each request will contains also the response channel. Here is not implemented the web service call.
+
 - after we created the main folder we have to initialize the new module assigning it a name:
     go mod init github.com/a11dev/go-gen-backend
 - I have chosen a project structure pointing to the modularization, we are going to create:

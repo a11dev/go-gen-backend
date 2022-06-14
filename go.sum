@@ -126,6 +126,8 @@ github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINE
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/rogpeppe/go-internal v1.6.1/go.mod h1:xXDCJY+GAPziupqXw64V24skbSoqbTEfhy4qGm1nDQc=
 github.com/rogpeppe/go-internal v1.8.0/go.mod h1:WmiCO8CzOY8rg0OYDC4/i/2WRWAB6poM+XZ2dLUbcbE=
+github.com/segmentio/ksuid v1.0.4 h1:sBo2BdShXjmcugAMwjugoGUdUV0pcxY5mW4xKRn3v4c=
+github.com/segmentio/ksuid v1.0.4/go.mod h1:/XUiZBD3kVx5SmUOl55voK5yeAbBNNIed+2O73XgrPE=
 github.com/shaj13/go-guardian v1.5.11 h1:GRoMBgh5stRh86iAkEOj7UqcodIs6E7pZ+LtOnxTUGk=
 github.com/shaj13/go-guardian v1.5.11/go.mod h1:Y4LLKzIAVAZlpr4tZCRvk+pkyZUwgsjZL86PZIzAH8g=
 github.com/shaj13/go-guardian/v2 v2.11.5 h1:qMIKTNhA+3dr5dkohPO+QJkJa+fbNLOU6IuoatTZ2go=
