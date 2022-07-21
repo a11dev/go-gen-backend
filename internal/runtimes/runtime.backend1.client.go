@@ -1,7 +1,6 @@
 package runtimes
 
 import (
-	"fmt"
 	"log"
 	"time"
 
@@ -24,7 +23,6 @@ func SetupSingleBackendClient(in chan BackendMsg, idx int) {
 	log.Printf("%15s | %5d | %20s | %20s ", "BackEnd Started #", idx, "", "")
 	// first time is opened a health service is called
 	for rin := range in {
-		fmt.Print("test")
 		time.Sleep(3 * time.Second)
 		result := remotes.InvokeBck(idx, rin.Message)
 		rin.Retc <- result

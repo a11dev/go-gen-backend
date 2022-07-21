@@ -20,15 +20,16 @@ var authenticator auth.Authenticator
 var cache store.Cache
 
 func main() {
-
+	os.Setenv("ENVIRONMENT_TYPE", "DEV")
 	// load application configurations
 	cfg, err := config.Load()
 	if err != nil {
 		log.Printf("failed to load application configuration: %s", err)
 		os.Exit(-1)
 	}
-
-	setupGoGuardian(cfg)
+	if cfg.LdapConfig.LdapEnabled {
+		setupGoGuardian(cfg)
+	}
 
 	// Set Gin to production mode
 	// gin.SetMode(gin.ReleaseMode)
@@ -54,11 +55,10 @@ func main() {
 	// Initialize the routes
 	routes.InitializeRoutes(router, cfg, authenticator, cache, in)
 
-
 	// Start serving the application
-	router.RunTLS(":"+cfg.ServerPort, "./keys/server-cert.pem", "./keys/server-key.pem")
+	// router.RunTLS(":"+cfg.ServerPort, "./keys/server-cert.pem", "./keys/server-key.pem")
 
-	// router.Run()
+	router.Run(":" + cfg.ServerPort)
 }
 
 // Go-Guardian is a golang library that provides a simple, clean, and idiomatic way to create powerful modern API and web authentication.

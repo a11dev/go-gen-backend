@@ -15,7 +15,7 @@
             "program": "${workspaceFolder}/main.go",
             "env": {
                 "ENVIRONMENT_TYPE":"DEV"
-              },
+              }
         }
     ]
 }

@@ -7,3 +7,13 @@ type Task struct {
 	Typecategory string
 	Refid        string
 }
+
+type TaskDetail struct {
+	Key  int64
+	Body []byte
+}
+
+type ResultTaskDetail struct {
+	Key  int64
+	Body interface{}
+}

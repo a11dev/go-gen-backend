@@ -45,8 +45,13 @@ func JwtAuth(authenticator auth.Authenticator, cfg *config.Config) (*jwt.GinJWTM
 				UserName: claims[identityKey].(string),
 			}
 		},
-		Authenticator: func(c *gin.Context) (interface{}, error) {
 
+		Authenticator: func(c *gin.Context) (interface{}, error) {
+			if !cfg.LdapConfig.LdapEnabled {
+
+				return auth.NewDefaultUser("SO00050", "SO00050", nil, nil), nil
+
+			}
 			user, err := authenticator.Authenticate(c.Request)
 			if err == nil {
 				return user, nil
@@ -55,6 +60,7 @@ func JwtAuth(authenticator auth.Authenticator, cfg *config.Config) (*jwt.GinJWTM
 			return nil, jwt.ErrFailedAuthentication
 		},
 		Authorizator: func(data interface{}, c *gin.Context) bool {
+			// logiche autorizzative
 			return true
 
 		},
