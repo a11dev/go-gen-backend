@@ -1,13 +1,8 @@
-FROM golang:1.10 AS build
-WORKDIR /go/src
-COPY go ./go
-COPY main.go .
-
-ENV CGO_ENABLED=0
-RUN go get -d -v ./...
-
-RUN go build -a -installsuffix cgo -o swagger .
-
-FROM scratch AS runtime
-COPY --from=build /go/src/swagger ./
-EXPOSE 8080/tcp
+FROM golang:1.18
+WORKDIR /builddir
+ADD . .
+RUN go build -o /app/my-go-backend
+RUN mv /builddir/config/config.yaml /app/config/dev.yaml
+RUN rm -r /builddir
+ENV ENVIRONMENT_TYPE=DEV
+EXPOSE 8043/tcp
