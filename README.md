@@ -67,3 +67,13 @@ go test <test path>
 or
 go test <test path>/...  
 to test starting from a path
+  
+## Docker file
+
+build the image: docker build --rm  -t <repository>:<tag> .
+ -rm   Remove intermediate containers after a successful build
+ -t    Name and optionally a tag in the 'name:tag' format
+then pushing the image to dockerhub
+
+ * dockerhub authentication - docker login -u "<username>" --password-stdin docker.io
+ * dockerhub push           - docker push repository:tag
