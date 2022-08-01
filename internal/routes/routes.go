@@ -4,6 +4,7 @@ package routes
 
 import (
 	"log"
+	"net/http"
 	"time"
 
 	"github.com/a11dev/go-gen-backend/internal/config"
@@ -30,18 +31,12 @@ func InitializeRoutes(router *gin.Engine, cfg *config.Config, authenticator auth
 	if errInit != nil {
 		log.Fatal("authMiddleware.MiddlewareInit() Error:" + errInit.Error())
 	}
-	// corsConfig := cors.DefaultConfig()
-	// corsConfig.AllowOrigins = []string{"http://localhost:3000/"}
-	// corsConfig.AllowCredentials = true
-	// corsConfig.AddAllowHeaders( "access-control-allow-origin"),
-	// corsConfig.AllowAllOrigins = true
-	// router.Use(cors.New(corsConfig))
-	// router.Use(CORS())
+
 	router.Use(cors.New(cors.Config{
-		AllowAllOrigins:  true,
-		ExposeHeaders:    []string{"Content-Length"},
-		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "access-control-allow-origin"},
+		AllowOrigins:     []string{"http://localhost:3000"},
+		AllowMethods:     []string{http.MethodGet, http.MethodPatch, http.MethodPost, http.MethodHead, http.MethodDelete, http.MethodOptions},
+		AllowHeaders:     []string{"Content-Type", "X-XSRF-TOKEN", "Accept", "Origin", "X-Requested-With", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length", "Access-Control-Allow-Origin"},
 		AllowCredentials: true,
 		MaxAge:           12 * time.Hour,
 	}))
@@ -70,6 +65,7 @@ func InitializeRoutes(router *gin.Engine, cfg *config.Config, authenticator auth
 	}
 }
 
+// Request header field access-control-allow-methods is not allowed by Access-Control-Allow-Headers in preflight response.
 // func CORS() gin.HandlerFunc {
 // 	// TO allow CORS
 // 	return func(c *gin.Context) {
