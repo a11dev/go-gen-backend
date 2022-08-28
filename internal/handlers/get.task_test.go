@@ -13,7 +13,6 @@ import (
 )
 
 func TestGetFromTaskList(t *testing.T) {
-
 	result, err := getFromTaskList(978897047)
 	var wants int64
 	wants = 978897047
@@ -25,26 +24,20 @@ func TestGetFromTaskList(t *testing.T) {
 func TestGetTask(t *testing.T) {
 	// Create a response recorder
 	w := httptest.NewRecorder()
-
 	// Get a new router
 	r := gin.New()
-
 	// Define the route similar to its definition in the routes file
 	r.GET("/task/:id", GetTask)
-
 	// Create a request to send to the above route
 	req, _ := http.NewRequest("GET", "/task/978897047", strings.NewReader(""))
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Content-Length", strconv.Itoa(len("")))
-
 	// Create the service and process the above request.
 	r.ServeHTTP(w, req)
-
 	// Test that the http status code is 200
 	if w.Code != http.StatusOK {
 		t.Fail()
 	}
-
 	// Test that the page title is "Successful Login"
 	// You can carry out a lot more detailed tests using libraries that can
 	// parse and process HTML pages
@@ -58,31 +51,24 @@ func TestGetTask(t *testing.T) {
 func TestGetTaskList(t *testing.T) {
 	// Create a response recorder
 	w := httptest.NewRecorder()
-
 	// Get a new router
 	r := gin.New()
-
 	// Define the route similar to its definition in the routes file
 	r.GET("/tasks", GetTasks)
-
 	// Create a request to send to the above route
 	req, _ := http.NewRequest("GET", "/tasks", strings.NewReader(""))
 	req.Header.Add("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Content-Length", strconv.Itoa(len("")))
-
 	// Create the service and process the above request.
 	r.ServeHTTP(w, req)
-
 	// Test that the http status code is 200
 	if w.Code != http.StatusOK {
 		t.Fail()
 	}
-
 	// Test that the page title is "Successful Login"
 	// You can carry out a lot more detailed tests using libraries that can
 	// parse and process HTML pages
 	p, err := ioutil.ReadAll(w.Body)
-
 	var f []map[string]interface{}
 	json.Unmarshal(p, &f)
 	var wants int64 = 978897386

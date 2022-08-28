@@ -19,7 +19,7 @@ type BackendMsg struct {
 // each request must inizialize a BackendMsg message and post it to the backend client
 // the response is posted on the return channel
 
-func SetupSingleBackendClient(in chan BackendMsg, idx int) {
+func SetupSingleBackendClient(in <-chan BackendMsg, idx int) {
 	log.Printf("%15s | %5d | %20s | %20s ", "BackEnd Started #", idx, "", "")
 	// first time is opened a health service is called
 	for rin := range in {
